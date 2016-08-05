@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `SSDPReceiver` struct in crate `ssdp`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, SSDPReceiver">
+
+    <title>ssdp::SSDPReceiver - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>ssdp</a></p><script>window.sidebarCurrent = {name: 'SSDPReceiver', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>ssdp</a>::<wbr><a class='struct' href=''>SSDPReceiver</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-475' class='srclink' href='../src/ssdp/src/receiver.rs.html#38-40' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct SSDPReceiver&lt;T&gt; {
+    // some fields omitted
+}</pre><div class='docblock'><p>A non-blocking SSDP message receiver.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;T&gt; <a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt; <span class='where'>where T: FromRawSSDP + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + 'static</span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-478' class='srclink' href='../src/ssdp/src/receiver.rs.html#42-66' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(socks: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/net/udp/struct.UdpSocket.html' title='std::net::udp::UdpSocket'>UdpSocket</a>&gt;, time: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/time/duration/struct.Duration.html' title='std::time::duration::Duration'>Duration</a>&gt;) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt;&gt;</code></h4>
+<div class='docblock'><p>Construct a receiver that receives bytes from a number of UdpSockets and
+tries to construct an object T from them. If a duration is provided, the
+channel will be shutdown after the specified duration.</p>
+
+<p>Due to implementation details, none of the UdpSockets should be bound to
+the default route, 0.0.0.0, address.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;T&gt; <a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-496' class='srclink' href='../src/ssdp/src/receiver.rs.html#83-93' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.try_recv' class='method'><code>fn <a href='#method.try_recv' class='fnname'>try_recv</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,&nbsp;<a class='enum' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/enum.TryRecvError.html' title='std::sync::mpsc::TryRecvError'>TryRecvError</a>&gt;</code></h4>
+<div class='docblock'><p>Non-blocking method that attempts to read a value from the receiver.</p>
+</div><h4 id='method.recv' class='method'><code>fn <a href='#method.recv' class='fnname'>recv</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/struct.RecvError.html' title='std::sync::mpsc::RecvError'>RecvError</a>&gt;</code></h4>
+<div class='docblock'><p>Blocking method that reads a value from the receiver until one is available.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a,&nbsp;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a <a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-502' class='srclink' href='../src/ssdp/src/receiver.rs.html#95-102' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<div class='docblock'><p>The type of the elements being iterated over.</p>
+</div><h4 id='associatedtype.IntoIter' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Iter.html' title='std::sync::mpsc::Iter'>Iter</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></h4>
+<div class='docblock'><p>Which kind of iterator are we turning this into?</p>
+</div><h4 id='method.into_iter' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; Self::IntoIter</code></h4>
+<div class='docblock'><p>Creates an iterator from a value. <a href="https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a,&nbsp;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for &amp;'a mut <a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-509' class='srclink' href='../src/ssdp/src/receiver.rs.html#104-111' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item-1' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<div class='docblock'><p>The type of the elements being iterated over.</p>
+</div><h4 id='associatedtype.IntoIter-1' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Iter.html' title='std::sync::mpsc::Iter'>Iter</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></h4>
+<div class='docblock'><p>Which kind of iterator are we turning this into?</p>
+</div><h4 id='method.into_iter-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; Self::IntoIter</code></h4>
+<div class='docblock'><p>Creates an iterator from a value. <a href="https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;T&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html' title='core::iter::traits::IntoIterator'>IntoIterator</a> for <a class='struct' href='../ssdp/struct.SSDPReceiver.html' title='ssdp::SSDPReceiver'>SSDPReceiver</a>&lt;T&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-516' class='srclink' href='../src/ssdp/src/receiver.rs.html#113-120' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Item-2' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.Item' class='type'>Item</a> = <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a>T, <a class='enum' href='https://doc.rust-lang.org/nightly/std/net/addr/enum.SocketAddr.html' title='std::net::addr::SocketAddr'>SocketAddr</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></h4>
+<div class='docblock'><p>The type of the elements being iterated over.</p>
+</div><h4 id='associatedtype.IntoIter-2' class='type'><code>type <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#associatedtype.IntoIter' class='type'>IntoIter</a> = <a class='struct' href='../ssdp/struct.SSDPIter.html' title='ssdp::SSDPIter'>SSDPIter</a>&lt;T&gt;</code></h4>
+<div class='docblock'><p>Which kind of iterator are we turning this into?</p>
+</div><h4 id='method.into_iter-2' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter' class='fnname'>into_iter</a>(self) -&gt; Self::IntoIter</code></h4>
+<div class='docblock'><p>Creates an iterator from a value. <a href="https://doc.rust-lang.org/nightly/core/iter/traits/trait.IntoIterator.html#tymethod.into_iter">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "ssdp";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
